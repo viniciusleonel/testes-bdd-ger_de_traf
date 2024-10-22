@@ -1,8 +1,10 @@
 package steps;
 
 import io.cucumber.java.pt.Dado;
+import io.cucumber.java.pt.E;
 import io.cucumber.java.pt.Então;
 import io.cucumber.java.pt.Quando;
+import model.ErrorMessageModel;
 import org.junit.Assert;
 import services.CadastroEntregasService;
 
@@ -28,6 +30,13 @@ public class CadastroEntregasSteps {
     @Então("o status code da resposta deve ser {int}")
     public void oStatusDaRespostaDeveSer(int statusCode) {
         Assert.assertEquals(statusCode, cadastroEntregasService.response.statusCode());
+    }
+
+    @E("o corpo de resposta de erro da api deve retornar a mensagem {string}")
+    public void oCorpoDeRespostaDeErroDaApiDeveRetornarAMensagem(String message) {
+        ErrorMessageModel errorMessageModel = cadastroEntregasService.gson.fromJson(
+                cadastroEntregasService.response.jsonPath().prettify(), ErrorMessageModel.class);
+        Assert.assertEquals(message, errorMessageModel.getMessage());
     }
 }
 

@@ -1,4 +1,6 @@
 # language: pt
+
+@regressivo
 Funcionalidade: Cadastro de nova entrega
   Como usuário da API
   Quero cadastrar uma nova entrega

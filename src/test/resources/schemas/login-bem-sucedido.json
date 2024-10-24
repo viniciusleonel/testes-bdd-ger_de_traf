@@ -1,42 +1,20 @@
 {
   "definitions": {},
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://example.com/object1729795229.json",
+  "$id": "https://example.com/object1729798740.json",
   "title": "Root",
   "type": "object",
   "required": [
-    "email",
-    "senha",
-    "role"
+    "token"
   ],
   "properties": {
-    "email": {
-      "$id": "#root/email",
-      "title": "Email",
+    "token": {
+      "$id": "#root/token",
+      "title": "Token",
       "type": "string",
       "default": "",
       "examples": [
-        "teste.fiap@gmail.com"
-      ],
-      "pattern": "^.*$"
-    },
-    "senha": {
-      "$id": "#root/senha",
-      "title": "Senha",
-      "type": "string",
-      "default": "",
-      "examples": [
-        "123456"
-      ],
-      "pattern": "^.*$"
-    },
-    "role": {
-      "$id": "#root/role",
-      "title": "Role",
-      "type": "string",
-      "default": "",
-      "examples": [
-        "ADMIN"
+        "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0ZS5maWFwQGdtYWlsLmNvbSIsImlzcyI6IkFQSSBHZXJlbmNpYW1lbnRvIGRlIHRyYWZlZ28iLCJJRCI6IjY3MWE5Mzk3Y2JhZTllNTM3ODdiZTA0OCIsImV4cCI6MTcyOTgxNjYzMn0.bc-OhpQblWuMmFXUItV1bl_1W_v0s-4uRyXG5SjymNk"
       ],
       "pattern": "^.*$"
     }

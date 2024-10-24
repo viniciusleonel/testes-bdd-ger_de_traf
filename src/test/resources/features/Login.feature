@@ -11,3 +11,5 @@ Funcionalidade: Login de usuario
     | senha          | 123456               |
     Quando eu enviar a requisição para o endpoint "/autenticacao/login" de login de usuario
     Então o status code da resposta deve ser 200
+    E que o arquivo de contrato esperado é o "Login bem sucedido"
+    Então a resposta da requisição deve estar em conformidade com o contrato selecionado

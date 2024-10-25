@@ -1,0 +1,24 @@
+## language: pt
+#
+#@regressivo
+#Funcionalidade: Login de usuario
+#  Como usuário da API
+#  Quero realizar um login
+#  Para que eu possa acessar o sistema
+#  Cenário: Login bem-sucedido de usuario
+#    Dado que eu tenha os seguintes dados do login:
+#      | campo          | valor                |
+#      | email          | teste.fiap@gmail.com |
+#      | senha          | 123456               |
+#    Quando eu enviar a requisição para o endpoint "/autenticacao/login" de login de usuario
+#    Então o status code da resposta deve ser 200
+#    E que o arquivo de contrato esperado é o "Login bem sucedido"
+#    Então a resposta da requisição deve estar em conformidade com o contrato selecionado
+#
+#  Cenário: Falha no login do usuario
+#    Dado que eu tenha os seguintes dados do login:
+#      | campo          | valor                |
+#      | email          | teste.fiap@gmail.com |
+#      | senha          | 123                  |
+#    Quando eu enviar a requisição para o endpoint "/autenticacao/login" de login de usuario
+#    Então o status code da resposta deve ser 400

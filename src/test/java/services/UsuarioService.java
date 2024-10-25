@@ -11,6 +11,9 @@ import com.networknt.schema.ValidationMessage;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import model.LoginModel;
+import model.ResponseUsuarioModel;
+import model.TokenResponse;
+import model.UsuarioModel;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
@@ -22,18 +25,31 @@ import java.util.Set;
 
 import static io.restassured.RestAssured.given;
 
-public class LoginService {
+public class UsuarioService {
 
+    final UsuarioModel usuarioModel = new UsuarioModel();
     final LoginModel loginModel = new LoginModel();
+    private final ObjectMapper mapper = new ObjectMapper();
+
     public final Gson gson = new GsonBuilder()
             .excludeFieldsWithoutExposeAnnotation()
             .create();
-    public Response response;
     String baseUrl = "https://traffic-incident-api-dev-dtbtfvg2e7e7a8eq.eastus2-01.azurewebsites.net";
-    String idDelivery;
     String schemasPath = "src/test/resources/schemas/";
+
+    public Response response;
+    String idUsuario;
+    String token;
     JSONObject jsonSchema;
-    private final ObjectMapper mapper = new ObjectMapper();
+
+    public void setFieldsUsuario(String field, String value) {
+        switch (field) {
+            case "email" -> usuarioModel.setEmail(value);
+            case "senha" -> usuarioModel.setSenha(value);
+            case "role" -> usuarioModel.setRole(value);
+            default -> throw new IllegalStateException("Unexpected feld" + field);
+        }
+    }
 
     public void setFieldsLogin(String field, String value) {
         switch (field) {
@@ -41,6 +57,20 @@ public class LoginService {
             case "senha" -> loginModel.setSenha(value);
             default -> throw new IllegalStateException("Unexpected feld" + field);
         }
+    }
+
+    public void createUsuario(String endPoint) {
+        String url = baseUrl + endPoint;
+        String bodyToSend = gson.toJson(usuarioModel);
+        response = given()
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .body(bodyToSend)
+                .when()
+                .post(url)
+                .then()
+                .extract()
+                .response();
     }
 
     public void createLogin(String endPoint) {
@@ -55,6 +85,28 @@ public class LoginService {
                 .then()
                 .extract()
                 .response();
+    }
+
+    public void retrieveIdUsuario(){
+        idUsuario = String.valueOf(gson.fromJson(response.jsonPath().prettify(), ResponseUsuarioModel.class).getId());
+    }
+
+    public void retrieveToken(){
+        token = String.valueOf(gson.fromJson(response.jsonPath().prettify(), TokenResponse.class).getToken());
+        System.out.println(token);
+    }
+
+    public void deleteUsuario(String endPoint) {
+        String url = String.format("%s%s/%s", baseUrl, endPoint, idUsuario);
+        response = given()
+                .accept(ContentType.JSON)
+                .header("Authorization", "Bearer " + token) // Adiciona o cabeçalho de autorização
+                .when()
+                .delete(url)
+                .then()
+                .extract()
+                .response();
+        System.out.println("id usuario: " + idUsuario);
     }
 
     private JSONObject loadJsonFromFile(String filePath) throws IOException {

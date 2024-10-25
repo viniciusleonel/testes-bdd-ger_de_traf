@@ -1,0 +1,44 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.com/object1729802892.json",
+  "title": "Root",
+  "type": "object",
+  "required": [
+    "id",
+    "email",
+    "role"
+  ],
+  "properties": {
+    "id": {
+      "$id": "#root/id",
+      "title": "Id",
+      "type": "string",
+      "default": "",
+      "examples": [
+        "671ab273cbae9e53787be049"
+      ],
+      "pattern": "^.*$"
+    },
+    "email": {
+      "$id": "#root/email",
+      "title": "Email",
+      "type": "string",
+      "default": "",
+      "examples": [
+        "teste.fiap@gmail.com"
+      ],
+      "pattern": "^.*$"
+    },
+    "role": {
+      "$id": "#root/role",
+      "title": "Role",
+      "type": "string",
+      "default": "",
+      "examples": [
+        "ADMIN"
+      ],
+      "pattern": "^.*$"
+    }
+  }
+}

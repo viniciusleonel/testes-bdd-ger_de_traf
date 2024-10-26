@@ -125,6 +125,7 @@ public class UsuarioService {
     public void setContract(String contract) throws IOException {
         switch (contract) {
             case "Login bem sucedido" -> jsonSchema = loadJsonFromFile(schemasPath + "login-bem-sucedido.json");
+            case "Cadastro bem sucedido" -> jsonSchema = loadJsonFromFile(schemasPath + "cadastro-bem-sucedido-de-usuario.json");
             default -> throw new IllegalStateException("Unexpected contract" + contract);
         }
     }

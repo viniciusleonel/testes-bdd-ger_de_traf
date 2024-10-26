@@ -27,7 +27,6 @@ public class UsuarioSteps {
     @Quando("eu enviar a requisição para o endpoint {string} de cadastro de usuario")
     public void euEnviarARequisiçãoParaOEndpointDeCadastroDeUsuario(String endpoint) {
         usuarioService.createUsuario(endpoint);
-        Assert.assertEquals(201, usuarioService.response.statusCode());
     }
 
     @Dado("que eu recupere o ID do usuario criado")

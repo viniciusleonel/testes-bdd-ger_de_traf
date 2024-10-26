@@ -38,7 +38,7 @@ public class UsuarioService {
     String schemasPath = "src/test/resources/schemas/";
 
     public Response response;
-    String idUsuario;
+    String id;
     String token;
     JSONObject jsonSchema;
 
@@ -71,6 +71,8 @@ public class UsuarioService {
                 .then()
                 .extract()
                 .response();
+        System.out.println(response.getBody().asString());
+        System.out.println("create usuario ");
     }
 
     public void createLogin(String endPoint) {
@@ -85,19 +87,22 @@ public class UsuarioService {
                 .then()
                 .extract()
                 .response();
+        System.out.println(response.getBody().asString());
+        System.out.println("create login ");
     }
 
     public void retrieveIdUsuario(){
-        idUsuario = String.valueOf(gson.fromJson(response.jsonPath().prettify(), ResponseUsuarioModel.class).getId());
+        id = String.valueOf(gson.fromJson(response.jsonPath().prettify(), ResponseUsuarioModel.class).getId());
+        System.out.println("id usuario: " + id);
     }
 
     public void retrieveToken(){
         token = String.valueOf(gson.fromJson(response.jsonPath().prettify(), TokenResponse.class).getToken());
-        System.out.println(token);
+        System.out.println("token: " + token);
     }
 
     public void deleteUsuario(String endPoint) {
-        String url = String.format("%s%s/%s", baseUrl, endPoint, idUsuario);
+        String url = String.format("%s%s/%s", baseUrl, endPoint, id);
         response = given()
                 .accept(ContentType.JSON)
                 .header("Authorization", "Bearer " + token) // Adiciona o cabeçalho de autorização
@@ -106,7 +111,8 @@ public class UsuarioService {
                 .then()
                 .extract()
                 .response();
-        System.out.println("id usuario: " + idUsuario);
+        System.out.println(response.getBody().asString());
+        System.out.println("delete usuario ");
     }
 
     private JSONObject loadJsonFromFile(String filePath) throws IOException {

@@ -7,7 +7,7 @@ import lombok.Data;
 public class UsuarioModel {
 
     @Expose(serialize = false)
-    private String idUsuario;
+    private String id;
 
     @Expose
     private String email;

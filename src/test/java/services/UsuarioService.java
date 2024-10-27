@@ -10,10 +10,7 @@ import com.networknt.schema.SpecVersion;
 import com.networknt.schema.ValidationMessage;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import model.LoginModel;
-import model.ResponseUsuarioModel;
-import model.TokenResponse;
-import model.UsuarioModel;
+import model.*;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
@@ -21,6 +18,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import static io.restassured.RestAssured.given;
@@ -29,6 +29,10 @@ public class UsuarioService {
 
     final UsuarioModel usuarioModel = new UsuarioModel();
     final LoginModel loginModel = new LoginModel();
+    private static AcidenteModel acidenteModel = new AcidenteModel();
+    final EnderecoModel enderecoModel = new EnderecoModel();
+    final List<VeiculoModel> veiculoModel = new ArrayList<>();
+    final List<FeridoModel> feridoModel = new ArrayList<>();
     private final ObjectMapper mapper = new ObjectMapper();
 
     public final Gson gson = new GsonBuilder()
@@ -59,6 +63,63 @@ public class UsuarioService {
         }
     }
 
+    public void setFieldAcidente(String field, String value) {
+        switch (field) {
+            case "dataHora" -> acidenteModel.setDataHora(value);
+            case "gravidade" -> acidenteModel.setGravidade(value);
+            default -> throw new IllegalStateException("Unexpected feld" + field);
+        }
+    }
+
+    public void setFieldEndereco(String field, String value) {
+        switch (field) {
+            case "logradouro" -> enderecoModel.setLogradouro(value);
+            case "numero" -> enderecoModel.setNumero(Integer.valueOf(value));
+            case "bairro" -> enderecoModel.setBairro(value);
+            case "cep" -> enderecoModel.setCep(value);
+            case "cidade" -> enderecoModel.setCidade(value);
+            case "estado" -> enderecoModel.setEstado(value);
+            default -> throw new IllegalStateException("Unexpected feld" + field);
+        }
+    }
+
+    public void setFieldVeiculo(String field, String value) {
+        if (veiculoModel.isEmpty()) {
+            veiculoModel.add(new VeiculoModel());
+        }
+        VeiculoModel veiculo = veiculoModel.get(veiculoModel.size() - 1);
+        switch (field) {
+            case "placa" -> veiculo.setPlaca(value);
+            case "modelo" -> veiculo.setModelo(value);
+            case "ano" -> veiculo.setAno(Integer.valueOf(value));
+            case "cor" -> veiculo.setCor(value);
+            default -> throw new IllegalStateException("Unexpected field " + field);
+        }
+    }
+
+    public void setFieldFerido(String field, String value) {
+        if (feridoModel.isEmpty()) {
+            feridoModel.add(new FeridoModel());
+        }
+        FeridoModel ferido = feridoModel.get(feridoModel.size() - 1);
+        switch (field) {
+            case "nome" -> ferido.setNome(value);
+            case "cpf" -> ferido.setCpf(value);
+            case "gravidade" -> ferido.setGravidade(value);
+            default -> throw new IllegalStateException("Unexpected field " + field);
+        }
+    }
+
+    public void montarAcidente() {
+        acidenteModel.setEndereco(enderecoModel);
+        acidenteModel.setVeiculos(veiculoModel);
+        acidenteModel.setFeridos(feridoModel);
+        System.out.println("Json Acidente");
+        System.out.println(gson.toJson(acidenteModel));
+        System.out.println(token);
+        System.out.println(idUsuario);
+    }
+
     public void createUsuario(String endPoint) {
         String url = baseUrl + endPoint;
         String bodyToSend = gson.toJson(usuarioModel);
@@ -79,6 +140,21 @@ public class UsuarioService {
         response = given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
+                .body(bodyToSend)
+                .when()
+                .post(url)
+                .then()
+                .extract()
+                .response();
+    }
+
+    public void createAcident(String endPoint) {
+        String url = baseUrl + endPoint;
+        String bodyToSend = gson.toJson(acidenteModel);
+        response = given()
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .header("Authorization", "Bearer " + token)
                 .body(bodyToSend)
                 .when()
                 .post(url)
@@ -120,6 +196,7 @@ public class UsuarioService {
             case "Cadastro bem sucedido" -> jsonSchema = loadJsonFromFile(schemasPath + "cadastro-bem-sucedido-de-usuario.json");
             default -> throw new IllegalStateException("Unexpected contract" + contract);
         }
+
     }
 
     public Set<ValidationMessage> validateResponseAgainstSchema() throws IOException

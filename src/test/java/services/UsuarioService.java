@@ -105,11 +105,6 @@ public class UsuarioService {
                 .then()
                 .extract()
                 .response();
-
-        System.out.println("delete usuario response");
-        System.out.println(response.getBody().asString());
-        System.out.println(idUsuario);
-        System.out.println(token);
     }
 
     private JSONObject loadJsonFromFile(String filePath) throws IOException {

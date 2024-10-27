@@ -22,3 +22,10 @@ Funcionalidade: Testes de falhas ao realizar cadastro e login
     Quando eu enviar a requisição para o endpoint "/autenticacao/login" de login de usuario
     Então o status code da resposta deve ser 400
 
+  Cenário: Falha ao deletar um usuario sem passar o token
+    Quando eu enviar a requisição para o endpoint "/usuarios/deletar" de login de usuario
+    Então o status code da resposta deve ser 403
+
+  Cenário: Falha ao listar usuarios sem passar o token
+    Quando eu enviar a requisição para o endpoint "/acidentes/listar?page=0&size=10" de login de usuario
+    Então o status code da resposta deve ser 403

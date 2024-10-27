@@ -38,7 +38,7 @@ public class UsuarioService {
     String schemasPath = "src/test/resources/schemas/";
 
     public Response response;
-    String id;
+    String idUsuario;
     String token;
     JSONObject jsonSchema;
 
@@ -71,8 +71,6 @@ public class UsuarioService {
                 .then()
                 .extract()
                 .response();
-        System.out.println(response.getBody().asString());
-        System.out.println("create usuario ");
     }
 
     public void createLogin(String endPoint) {
@@ -87,22 +85,18 @@ public class UsuarioService {
                 .then()
                 .extract()
                 .response();
-        System.out.println(response.getBody().asString());
-        System.out.println("create login ");
     }
 
     public void retrieveIdUsuario(){
-        id = String.valueOf(gson.fromJson(response.jsonPath().prettify(), ResponseUsuarioModel.class).getId());
-        System.out.println("id usuario: " + id);
+        idUsuario = String.valueOf(gson.fromJson(response.jsonPath().prettify(), ResponseUsuarioModel.class).getId());
     }
 
     public void retrieveToken(){
         token = String.valueOf(gson.fromJson(response.jsonPath().prettify(), TokenResponse.class).getToken());
-        System.out.println("token: " + token);
     }
 
     public void deleteUsuario(String endPoint) {
-        String url = String.format("%s%s/%s", baseUrl, endPoint, id);
+        String url = String.format("%s%s/%s", baseUrl, endPoint, idUsuario);
         response = given()
                 .accept(ContentType.JSON)
                 .header("Authorization", "Bearer " + token) // Adiciona o cabeçalho de autorização
@@ -111,8 +105,11 @@ public class UsuarioService {
                 .then()
                 .extract()
                 .response();
+
+        System.out.println("delete usuario response");
         System.out.println(response.getBody().asString());
-        System.out.println("delete usuario ");
+        System.out.println(idUsuario);
+        System.out.println(token);
     }
 
     private JSONObject loadJsonFromFile(String filePath) throws IOException {

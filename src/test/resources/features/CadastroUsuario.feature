@@ -2,7 +2,7 @@
 
 @regressivo
 Funcionalidade: Cadastro, Login e Delecao de usuario, com checagem de contratos e validacao de status code
-  Como usuário da API
+  Como usuário da Traffic Incident Management API
   Quero realizar um cadastro de usuario, realizar um login e deletar o usuario
   Para que o registro seja salvo corretamente no sistema
   Contexto: Cadastro e login bem-sucedido de usuario

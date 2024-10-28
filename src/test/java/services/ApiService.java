@@ -26,7 +26,7 @@ import java.util.Set;
 
 import static io.restassured.RestAssured.given;
 
-public class UsuarioService {
+public class ApiService {
 
     final UsuarioModel usuarioModel = new UsuarioModel();
     final LoginModel loginModel = new LoginModel();

@@ -2,7 +2,7 @@
 
 @regressivo
 Funcionalidade: Registro de acidente com checagem de contrato e validacao de status code
-  Como usuário da API
+  Como usuário da Traffic Incident Management API
   Quero realizar um cadastro de usuario, realizar um login, cadastrar um acidente e deletar o usuario
   Para que o registro seja salvo corretamente no sistema
   Contexto: Cadastro e login bem-sucedido de usuario para registro de acidente com validacao de status code

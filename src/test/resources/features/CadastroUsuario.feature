@@ -24,7 +24,7 @@ Funcionalidade: Cadastro, Login e Delecao de usuario, com checagem de contratos
     Então o status code da resposta deve ser 200
     E que o arquivo de contrato esperado é o "Login bem sucedido"
     Então a resposta da requisição deve estar em conformidade com o contrato selecionado
-    Cenario: Deletando usuario apos cadastro e login bem sucedidos
+    Cenario: Cadastrando, logando e deletando usuario apos cadastro e login bem sucedidos
       Dado que eu recupere o token retornado ao realizar login
       Quando eu enviar a requisição com o ID para o endpoint "/usuarios/deletar" de deleção de usuario
       Então o status code da resposta deve ser 204

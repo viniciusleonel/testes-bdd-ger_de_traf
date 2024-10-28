@@ -1,7 +1,7 @@
 # language: pt
 
 @regressivo
-Funcionalidade: Cadastro, Login e Delecao de usuario, com checagem de contratos
+Funcionalidade: Registro de acidente com checagem de contrato
   Como usuário da API
   Quero realizar um cadastro de usuario, realizar um login e deletar o usuario
   Para que o registro seja salvo corretamente no sistema
@@ -51,6 +51,8 @@ Funcionalidade: Cadastro, Login e Delecao de usuario, com checagem de contratos
     E que eu consiga montar os dados do acidente com os dados obtidos
     Quando eu enviar a requisição para o endpoint "/acidentes/cadastrar" de cadastro de acidente
     Então o status code da resposta deve ser 201
+    E que o arquivo de contrato esperado é o "Acidente cadastrado"
+    Então a resposta da requisição deve estar em conformidade com o contrato selecionado
     Cenario: Registrando acidente e deletando usuario apos registro de acidente bem sucedido
       Quando eu enviar a requisição com o ID para o endpoint "/usuarios/deletar" de deleção de usuario
       Então o status code da resposta deve ser 204

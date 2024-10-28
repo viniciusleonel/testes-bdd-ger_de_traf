@@ -114,10 +114,6 @@ public class UsuarioService {
         acidenteModel.setEndereco(enderecoModel);
         acidenteModel.setVeiculos(veiculoModel);
         acidenteModel.setFeridos(feridoModel);
-        System.out.println("Json Acidente");
-        System.out.println(gson.toJson(acidenteModel));
-        System.out.println(token);
-        System.out.println(idUsuario);
     }
 
     public void createUsuario(String endPoint) {
@@ -194,6 +190,7 @@ public class UsuarioService {
         switch (contract) {
             case "Login bem sucedido" -> jsonSchema = loadJsonFromFile(schemasPath + "login-bem-sucedido.json");
             case "Cadastro bem sucedido" -> jsonSchema = loadJsonFromFile(schemasPath + "cadastro-bem-sucedido-de-usuario.json");
+            case "Acidente cadastrado" -> jsonSchema = loadJsonFromFile(schemasPath + "cadastro-bem-sucedido-de-acidente.json");
             default -> throw new IllegalStateException("Unexpected contract" + contract);
         }
 

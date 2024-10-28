@@ -131,4 +131,16 @@ public class ApiSteps {
         apiService.validateMessage(message, field);
         System.out.println("Validando corpo da resposta da requisição...");
     }
+
+    @Quando("eu enviar a requisição para o endpoint {string} de listagem de usuarios")
+    public void euEnviarARequisiçãoParaOEndpointDeListagemDeUsuarios(String endpoint) {
+        apiService.enviarReqGet(endpoint);
+        System.out.println("Enviando uma requisição de login para o endpoint: " + endpoint);
+    }
+
+    @Quando("eu enviar a requisição para o endpoint {string} de listagem de acidentes")
+    public void euEnviarARequisiçãoParaOEndpointDeListagemDeAcidentes(String endpoint) {
+        apiService.enviarReqGet(endpoint);
+        System.out.println("Enviando uma requisição de login para o endpoint: " + endpoint);
+    }
 }

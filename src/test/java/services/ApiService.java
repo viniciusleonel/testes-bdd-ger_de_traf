@@ -160,6 +160,19 @@ public class ApiService {
                 .response();
     }
 
+    public void enviarReqGet(String endPoint) {
+        String url = baseUrl + endPoint;
+        response = given()
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .header("Authorization", "Bearer " + token)
+                .when()
+                .get(url)
+                .then()
+                .extract()
+                .response();
+    }
+
     public void retrieveIdUsuario(){
         idUsuario = String.valueOf(gson.fromJson(response.jsonPath().prettify(), ResponseUsuarioModel.class).getId());
     }
@@ -172,7 +185,7 @@ public class ApiService {
         String url = String.format("%s%s/%s", baseUrl, endPoint, idUsuario);
         response = given()
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + token) // Adiciona o cabeçalho de autorização
+                .header("Authorization", "Bearer " + token)
                 .when()
                 .delete(url)
                 .then()

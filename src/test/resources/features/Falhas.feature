@@ -49,9 +49,9 @@ Funcionalidade: Testes de falhas da API com validacao de status code e validacao
     Então o status code da resposta deve ser 403
 
   Cenário: Falha ao listar usuarios sem passar o token e validacao de status code
-    Quando eu enviar a requisição para o endpoint "/usuarios/listar?page=0&size=10" de login de usuario
+    Quando eu enviar a requisição para o endpoint "/usuarios/listar?page=0&size=10" de listagem de usuarios
     Então o status code da resposta deve ser 403
 
   Cenário: Falha ao listar acidentes sem passar o token e validacao de status code
-    Quando eu enviar a requisição para o endpoint "/acidentes/listar?page=0&size=10" de login de usuario
+    Quando eu enviar a requisição para o endpoint "/acidentes/listar?page=0&size=10" de listagem de acidentes
     Então o status code da resposta deve ser 403

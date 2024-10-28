@@ -143,4 +143,16 @@ public class ApiSteps {
         apiService.enviarReqGet(endpoint);
         System.out.println("Enviando uma requisição de login para o endpoint: " + endpoint);
     }
+
+    @Dado("que eu recupere o ID do acidente registrado")
+    public void queEuRecupereOIDDoAcidenteRegistrado() {
+        apiService.retrieveIdAcidente();
+        System.out.println("Recuperando ID do acidente...");
+    }
+
+    @Quando("eu enviar a requisição com o ID para o endpoint {string} de deleção de acidente")
+    public void euEnviarARequisiçãoComOIDParaOEndpointDeDeleçãoDeAcidente(String endpoint) {
+        apiService.deleteAcidente(endpoint);
+        System.out.println("Enviando uma requisição de deleção de acidente com o ID recuperado para o endpoint: " + endpoint);
+    }
 }

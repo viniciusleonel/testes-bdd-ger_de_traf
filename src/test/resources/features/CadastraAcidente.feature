@@ -5,7 +5,7 @@ Funcionalidade: Registro de acidente com checagem de contrato e validacao de sta
   Como usuário da Traffic Incident Management API
   Quero realizar um cadastro de usuario, realizar um login, cadastrar um acidente e deletar o usuario
   Para que o registro seja salvo corretamente no sistema
-  Contexto: Cadastro e login bem-sucedido de usuario para registro de acidente com validacao de status code
+  Contexto: Cadastro e login bem-sucedido de usuario para registro de acidente com validacao de status code e validação de contrato
     Dado que eu tenha os seguintes dados do usuario:
     | campo          | valor                |
     | email          | acidente.fiap@gmail.com |
@@ -53,6 +53,11 @@ Funcionalidade: Registro de acidente com checagem de contrato e validacao de sta
     Então o status code da resposta deve ser 201
     E que o arquivo de contrato esperado é o "Acidente cadastrado"
     Então a resposta da requisição deve estar em conformidade com o contrato selecionado
-    Cenario: Registrando acidente e deletando usuario apos registro de acidente bem sucedido com validacao de status code
-      Quando eu enviar a requisição com o ID para o endpoint "/usuarios/deletar" de deleção de usuario
-      Então o status code da resposta deve ser 204
+    Dado que eu recupere o ID do acidente registrado
+    Quando eu enviar a requisição para o endpoint "/acidentes/listar?page=0&size=10" de listagem de acidentes
+    Então o status code da resposta deve ser 200
+    Quando eu enviar a requisição com o ID para o endpoint "/acidentes/deletar" de deleção de acidente
+    Então o status code da resposta deve ser 204
+    Cenario: Registrando dados do acidente e limpando dados após registro de acidente bem sucedido com validação de status code e validação de contrato
+        Quando eu enviar a requisição com o ID para o endpoint "/usuarios/deletar" de deleção de usuario
+        Então o status code da resposta deve ser 204

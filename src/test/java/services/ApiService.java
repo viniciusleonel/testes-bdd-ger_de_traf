@@ -44,6 +44,7 @@ public class ApiService {
 
     public Response response;
     String idUsuario;
+    String idAcidente;
     String token;
     JSONObject jsonSchema;
 
@@ -177,12 +178,28 @@ public class ApiService {
         idUsuario = String.valueOf(gson.fromJson(response.jsonPath().prettify(), ResponseUsuarioModel.class).getId());
     }
 
+    public void retrieveIdAcidente(){
+        idAcidente = String.valueOf(gson.fromJson(response.jsonPath().prettify(), AcidenteModel.class).getIdAcidente());
+    }
+
     public void retrieveToken(){
         token = String.valueOf(gson.fromJson(response.jsonPath().prettify(), TokenResponse.class).getToken());
     }
 
     public void deleteUsuario(String endPoint) {
         String url = String.format("%s%s/%s", baseUrl, endPoint, idUsuario);
+        response = given()
+                .accept(ContentType.JSON)
+                .header("Authorization", "Bearer " + token)
+                .when()
+                .delete(url)
+                .then()
+                .extract()
+                .response();
+    }
+
+    public void deleteAcidente(String endPoint) {
+        String url = String.format("%s%s/%s", baseUrl, endPoint, idAcidente);
         response = given()
                 .accept(ContentType.JSON)
                 .header("Authorization", "Bearer " + token)

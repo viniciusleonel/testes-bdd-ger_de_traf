@@ -11,14 +11,15 @@ import com.networknt.schema.ValidationMessage;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import model.*;
+import model.response.*;
 import org.json.JSONObject;
 import org.json.JSONTokener;
+import org.junit.Assert;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -191,9 +192,29 @@ public class UsuarioService {
             case "Login bem sucedido" -> jsonSchema = loadJsonFromFile(schemasPath + "login-bem-sucedido.json");
             case "Cadastro bem sucedido" -> jsonSchema = loadJsonFromFile(schemasPath + "cadastro-bem-sucedido-de-usuario.json");
             case "Acidente cadastrado" -> jsonSchema = loadJsonFromFile(schemasPath + "cadastro-bem-sucedido-de-acidente.json");
-            default -> throw new IllegalStateException("Unexpected contract" + contract);
+            default -> throw new IllegalStateException("Unexpected contract: " + contract);
         }
+    }
 
+    public void validateMessage(String message, String field) throws IOException {
+        switch (field) {
+            case "email" -> {
+                EmailErrorResponse emailErrorResponse = gson.fromJson(
+                    response.jsonPath().prettify(), EmailErrorResponse.class);
+                Assert.assertEquals(message, emailErrorResponse.getEmail());
+            }
+            case "senha" -> {
+                SenhaErrorResponse senhaErrorResponse = gson.fromJson(
+                        response.jsonPath().prettify(), SenhaErrorResponse.class);
+                Assert.assertEquals(message, senhaErrorResponse.getSenha());
+            }
+            case "message" -> {
+                ErrorMessageModel errorMessageModel = gson.fromJson(
+                        response.jsonPath().prettify(), ErrorMessageModel.class);
+                Assert.assertEquals(message, errorMessageModel.getMessage());
+            }
+            default ->  throw new IllegalStateException("Unexpected field: " + field);
+        }
     }
 
     public Set<ValidationMessage> validateResponseAgainstSchema() throws IOException

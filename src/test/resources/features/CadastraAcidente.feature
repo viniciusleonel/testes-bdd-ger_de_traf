@@ -1,11 +1,11 @@
 # language: pt
 
 @regressivo
-Funcionalidade: Registro de acidente com checagem de contrato
+Funcionalidade: Registro de acidente com checagem de contrato e validacao de status code
   Como usuário da API
-  Quero realizar um cadastro de usuario, realizar um login e deletar o usuario
+  Quero realizar um cadastro de usuario, realizar um login, cadastrar um acidente e deletar o usuario
   Para que o registro seja salvo corretamente no sistema
-  Contexto: Cadastro e login bem-sucedido de usuario
+  Contexto: Cadastro e login bem-sucedido de usuario para registro de acidente com validacao de status code
     Dado que eu tenha os seguintes dados do usuario:
     | campo          | valor                |
     | email          | acidente.fiap@gmail.com |
@@ -29,7 +29,7 @@ Funcionalidade: Registro de acidente com checagem de contrato
       | campo          | valor               |
       | dataHora       | 2024-08-04T13:00:00 |
       | gravidade      | grave               |
-    Dado que eu tenha os seguintes dados do endereco:
+    E que eu tenha os seguintes dados do endereco:
       | campo       | valor                   |
       | logradouro  | Av. Lins de Vasconcelos |
       | numero      | 1222                    |
@@ -37,13 +37,13 @@ Funcionalidade: Registro de acidente com checagem de contrato
       | cep         | 01538001                |
       | cidade      | São Paulo               |
       | estado      | SP                      |
-    Dado que eu tenha os seguintes dados do veiculo:
+    E que eu tenha os seguintes dados do veiculo:
       | campo       | valor         |
       | placa       | ABC-123       |
       | modelo      | Corcel 2      |
       | ano         | 1986          |
       | cor         | Branco        |
-    Dado que eu tenha os seguintes dados do ferido:
+    E que eu tenha os seguintes dados do ferido:
       | campo       | valor              |
       | nome        | James              |
       | cpf         | 10987654321        |
@@ -53,6 +53,6 @@ Funcionalidade: Registro de acidente com checagem de contrato
     Então o status code da resposta deve ser 201
     E que o arquivo de contrato esperado é o "Acidente cadastrado"
     Então a resposta da requisição deve estar em conformidade com o contrato selecionado
-    Cenario: Registrando acidente e deletando usuario apos registro de acidente bem sucedido
+    Cenario: Registrando acidente e deletando usuario apos registro de acidente bem sucedido com validacao de status code
       Quando eu enviar a requisição com o ID para o endpoint "/usuarios/deletar" de deleção de usuario
       Então o status code da resposta deve ser 204

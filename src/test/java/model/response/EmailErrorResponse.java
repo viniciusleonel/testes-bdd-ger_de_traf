@@ -1,11 +1,11 @@
-package model;
+package model.response;
 
 import com.google.gson.annotations.Expose;
 import lombok.Data;
 
 @Data
-public class TokenResponse {
+public class EmailErrorResponse {
 
     @Expose
-    private String token;
+    private String email;
 }

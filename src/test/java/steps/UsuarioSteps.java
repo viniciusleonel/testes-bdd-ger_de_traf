@@ -84,21 +84,21 @@ public class UsuarioSteps {
         usuarioService.createAcident(endpoint);
     }
 
-    @Dado("que eu tenha os seguintes dados do endereco:")
+    @E("que eu tenha os seguintes dados do endereco:")
     public void queEuTenhaOsSeguintesDadosDoEndereco(List<Map<String, String>> rows) {
         for(Map<String, String> columns : rows) {
             usuarioService.setFieldEndereco(columns.get("campo"),  columns.get("valor"));
         }
     }
 
-    @Dado("que eu tenha os seguintes dados do veiculo:")
+    @E("que eu tenha os seguintes dados do veiculo:")
     public void queEuTenhaOsSeguintesDadosDoVeiculo(List<Map<String, String>> rows) {
         for(Map<String, String> columns : rows) {
             usuarioService.setFieldVeiculo(columns.get("campo"),  columns.get("valor"));
         }
     }
 
-    @Dado("que eu tenha os seguintes dados do ferido:")
+    @E("que eu tenha os seguintes dados do ferido:")
     public void queEuTenhaOsSeguintesDadosDoFerido(List<Map<String, String>> rows) {
         for(Map<String, String> columns : rows) {
             usuarioService.setFieldFerido(columns.get("campo"),  columns.get("valor"));
@@ -108,5 +108,10 @@ public class UsuarioSteps {
     @E("que eu consiga montar os dados do acidente com os dados obtidos")
     public void queEuConsigaMontarOsDadosDoAcidenteComOsDadosObtidos() {
         usuarioService.montarAcidente();
+    }
+
+    @E("o corpo de resposta de erro da api deve retornar a mensagem {string} do campo {string}")
+    public void oCorpoDeRespostaDeErroDaApiDeveRetornarAMensagem(String message, String field) throws IOException {
+        usuarioService.validateMessage(message, field);
     }
 }

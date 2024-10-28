@@ -1,4 +1,4 @@
-package model;
+package model.response;
 
 import com.google.gson.annotations.Expose;
 import lombok.Data;

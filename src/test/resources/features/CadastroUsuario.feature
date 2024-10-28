@@ -1,7 +1,7 @@
 # language: pt
 
 @regressivo
-Funcionalidade: Cadastro, Login e Delecao de usuario, com checagem de contratos
+Funcionalidade: Cadastro, Login e Delecao de usuario, com checagem de contratos e validacao de status code
   Como usuário da API
   Quero realizar um cadastro de usuario, realizar um login e deletar o usuario
   Para que o registro seja salvo corretamente no sistema

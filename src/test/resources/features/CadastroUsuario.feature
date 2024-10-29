@@ -1,11 +1,11 @@
 # language: pt
 
 @regressivo
-Funcionalidade: Cadastro, login e deleção de usuário, com checagem de contratos e validação de status code
+Funcionalidade: Cadastro, login e deleção de usuário com validação de contratos e status code
   Como usuário da Traffic Incident Management API
-  Quero realizar um cadastro de usuario, realizar um login e deletar o usuario
-  Para que o registro seja salvo corretamente no sistema e os dados sejam delatados no final
-  Contexto: Cadastro e login bem-sucedido de usuario
+  Quero garantir que o processo de cadastro, login e deleção de usuário funcione corretamente
+  Para assegurar que o sistema mantenha a integridade dos dados e remova informações ao final dos testes
+  Contexto: Cadastro e login bem-sucedido de usuário para obtenção do token de autenticação necessário
     Dado que eu tenha os seguintes dados do usuario:
     | campo          | valor                |
     | email          | teste.fiap@gmail.com |

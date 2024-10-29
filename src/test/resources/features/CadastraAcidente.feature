@@ -3,9 +3,9 @@
 @regressivo
 Funcionalidade: Registro de acidente com checagem de contrato e validacao de status code
   Como usuário da Traffic Incident Management API
-  Quero realizar um cadastro de usuario, realizar um login, cadastrar um acidente e deletar o usuario
-  Para que o registro seja salvo corretamente no sistema
-  Contexto: Cadastro e login bem-sucedido de usuario para registro de acidente com validacao de status code e validação de contrato
+  Quero garantir que o processo cadastro de acidente, listagem e deleção de acidente funcione corretamente
+  Para assegurar que o sistema mantenha a integridade dos dados e remova informações ao final dos testes
+  Contexto: Cadastro e login bem-sucedido de usuário para obtenção do token de autenticação necessário
     Dado que eu tenha os seguintes dados do usuario:
     | campo          | valor                |
     | email          | acidente.fiap@gmail.com |
@@ -54,10 +54,10 @@ Funcionalidade: Registro de acidente com checagem de contrato e validacao de sta
     E que o arquivo de contrato esperado é o "Acidente cadastrado"
     Então a resposta da requisição deve estar em conformidade com o contrato selecionado
     Dado que eu recupere o ID do acidente registrado
-    Quando eu enviar a requisição para o endpoint "/acidentes/listar?page=0&size=10" de listagem de acidentes
+    Quando eu enviar a requisição para o endpoint "/acidentes/listar" de listagem de acidentes
     Então o status code da resposta deve ser 200
     Quando eu enviar a requisição com o ID para o endpoint "/acidentes/deletar" de deleção de acidente
     Então o status code da resposta deve ser 204
     Cenario: Registrando dados do acidente e limpando dados após registro de acidente bem sucedido com validação de status code e validação de contrato
-        Quando eu enviar a requisição com o ID para o endpoint "/usuarios/deletar" de deleção de usuario
-        Então o status code da resposta deve ser 204
+      Quando eu enviar a requisição com o ID para o endpoint "/usuarios/deletar" de deleção de usuario
+      Então o status code da resposta deve ser 204

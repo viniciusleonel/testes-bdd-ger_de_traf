@@ -30,7 +30,7 @@ public class ApiService {
 
     final UsuarioModel usuarioModel = new UsuarioModel();
     final LoginModel loginModel = new LoginModel();
-    private static AcidenteModel acidenteModel = new AcidenteModel();
+    final AcidenteModel acidenteModel = new AcidenteModel();
     final EnderecoModel enderecoModel = new EnderecoModel();
     final List<VeiculoModel> veiculoModel = new ArrayList<>();
     final List<FeridoModel> feridoModel = new ArrayList<>();

@@ -30,8 +30,8 @@ public class GeneralSteps extends ApiService {
         System.out.println("Obtendo dados do contrato...");
     }
 
-    @Então("a resposta da requisição deve estar em conformidade com o contrato selecionado")
-    public void aRespostaDaRequisiçãoDeveEstarEmConformidadeComOContratoSelecionado() throws IOException {
+    @Então("a resposta da requisição deve estar conforme o contrato selecionado")
+    public void aRespostaDaRequisiçãoDeveEstarConformeOContratoSelecionado() throws IOException {
         Set<ValidationMessage> validateResponse = validateResponseAgainstSchema();
         Assert.assertTrue("O contrato está inválido. Erros encontrados: " + validateResponse, validateResponse.isEmpty());
         System.out.println("Analisando resposta da requisição com o contrato selecionado...");

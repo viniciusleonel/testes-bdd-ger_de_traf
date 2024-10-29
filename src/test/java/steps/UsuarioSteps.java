@@ -1,6 +1,7 @@
 package steps;
 
 import io.cucumber.java.pt.Dado;
+import io.cucumber.java.pt.Então;
 import io.cucumber.java.pt.Quando;
 import services.UsuarioService;
 
@@ -54,4 +55,5 @@ public class UsuarioSteps extends UsuarioService {
         createLogin(endpoint);
         System.out.println("Enviando uma requisição de login para o endpoint: " + endpoint);
     }
+
 }

@@ -95,9 +95,7 @@ Cada cenário é descrito em termos de pré-condições, ações e resultados es
 
 ### Cenário 2: Realizando login, validando status code e contrato
 
-- **Dado** que eu tenha os seguintes dados do login:
-  - **email**
-  - **senha**
+- **Dado** que eu realize o login com os mesmos dados cadastrados
 - **Quando** eu enviar a requisição para o endpoint "/autenticacao/login" de login de usuário
 - **Então** o status code da resposta deve ser 200 (OK)
 - **Dado** que eu recupere o token retornado ao realizar login (Recupera o Token para uso no Cenário 3)
@@ -142,9 +140,7 @@ o login para a obtenção do token de autenticação. Ao final dos testes o usu�
 
 ### Cenário 2: Realizando login, recuperando token, validando status code e contrato
 
-- **Dado** que eu tenha os seguintes dados do login:
-   - **email**
-   - **senha**
+- **Dado** que eu realize o login com os mesmos dados cadastrados
 - **Quando** eu enviar a requisição para o endpoint "/autenticacao/login" de login de usuário
 - **Então** o status code da resposta deve ser 200 (OK)
 - **Dado** que eu recupere o token retornado ao realizar login (Recupera o Token para uso em todos os Cenários seguintes)

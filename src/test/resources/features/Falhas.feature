@@ -17,7 +17,7 @@ Funcionalidade: Testes de falhas da API com validação de status code e valida�
     E o corpo de resposta de erro da api deve retornar a mensagem "Insira um e-mail válido!" do campo "email"
 
   Cenário: Falha no cadastro do usuário ao não enviar um email, com validação de status code e validação de mensagem de erro
-    Dado que eu tenha os seguintes dados do usuario:
+    Dado que eu deixe de enviar um dos campos do usuario:
       | campo | valor  |
       | email |        |
       | senha | 123456 |
@@ -27,7 +27,7 @@ Funcionalidade: Testes de falhas da API com validação de status code e valida�
     E o corpo de resposta de erro da api deve retornar a mensagem "Insira um e-mail!" do campo "email"
 
   Cenário: Falha no cadastro do usuário ao não enviar uma senha, com validação de status code e validação de mensagem de erro
-    Dado que eu tenha os seguintes dados do usuario:
+    Dado que eu deixe de enviar um dos campos do usuario:
       | campo | valor               |
       | email | teste.fiapgmail.com |
       | senha |                     |

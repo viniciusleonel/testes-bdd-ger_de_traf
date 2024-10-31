@@ -19,10 +19,7 @@ Funcionalidade: Registro, listagem e deleção de acidente com validação de co
     Então a resposta da requisição deve estar conforme o contrato selecionado
 
   Cenario: Realizando login, recuperando token, validando status code e contrato
-    Dado que eu tenha os seguintes dados do login:
-      | campo | valor                   |
-      | email | acidente.fiap@gmail.com |
-      | senha | 123456                  |
+    Dado que eu realize o login com os mesmos dados cadastrados
     Quando eu enviar a requisição para o endpoint "/autenticacao/login" de login de usuario
     Então o status code da resposta deve ser 200
     Dado que eu recupere o token retornado ao realizar login

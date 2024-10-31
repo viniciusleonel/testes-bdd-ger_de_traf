@@ -1,7 +1,6 @@
 package steps;
 
 import io.cucumber.java.pt.Dado;
-import io.cucumber.java.pt.Então;
 import io.cucumber.java.pt.Quando;
 import services.UsuarioService;
 
@@ -56,4 +55,17 @@ public class UsuarioSteps extends UsuarioService {
         System.out.println("Enviando uma requisição de login para o endpoint: " + endpoint);
     }
 
+    @Dado("que eu deixe de enviar um dos campos do usuario:")
+    public void queEuDeixeDeEnviarUmDosCamposDoUsuario(List<Map<String, String>> rows) {
+        for (Map<String, String> columns : rows) {
+            setFieldsUsuarioWithoutAField(columns.get("campo"), columns.get("valor"));
+        }
+        System.out.println("Obtendo dados do login...");
+    }
+
+    @Dado("que eu realize o login com os mesmos dados cadastrados")
+    public void queEuRealizeOLoginComOsMesmosDadosCadastrados() {
+        setFieldsLogin();
+        System.out.println("Obtendo dados do login...");
+    }
 }

@@ -3,19 +3,38 @@ package services;
 import io.restassured.http.ContentType;
 import model.response.ResponseUsuarioModel;
 
-import static io.restassured.RestAssured.given;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
+import static io.restassured.RestAssured.given;
 
 
 public class UsuarioService extends ApiService {
 
     static String idUsuario;
+    static String emailUsuario;
+    static String senhaUsuario;
 
     public void retrieveIdUsuario() {
         idUsuario = String.valueOf(gson.fromJson(response.jsonPath().prettify(), ResponseUsuarioModel.class).getId());
     }
 
     public void setFieldsUsuario(String field, String value) {
+        switch (field) {
+            case "email" -> {
+                emailUsuario = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss")) + value;
+                usuarioModel.setEmail(emailUsuario);
+            }
+            case "senha" -> {
+                senhaUsuario = value;
+                usuarioModel.setSenha(senhaUsuario);
+            }
+            case "role" -> usuarioModel.setRole(value);
+            default -> throw new IllegalStateException("Unexpected feld" + field);
+        }
+    }
+
+    public void setFieldsUsuarioWithoutAField(String field, String value) {
         switch (field) {
             case "email" -> usuarioModel.setEmail(value);
             case "senha" -> usuarioModel.setSenha(value);
@@ -30,6 +49,12 @@ public class UsuarioService extends ApiService {
             case "senha" -> loginModel.setSenha(value);
             default -> throw new IllegalStateException("Unexpected feld" + field);
         }
+    }
+
+    public void setFieldsLogin() {
+        loginModel.setEmail(emailUsuario);
+        loginModel.setSenha(senhaUsuario);
+
     }
 
     public void createUsuario(String endPoint) {

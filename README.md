@@ -283,3 +283,9 @@ Print GitHub Actions
 Print Cucumber Reports
 
 ![Print Cucumber Reports](assets/images/print-cucumber-reports.png)
+
+## Criado por:
+
+### Vinicius Leonel
+
+### Linkedin: https://www.linkedin.com/in/viniciuslps

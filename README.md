@@ -50,13 +50,14 @@ A aplicação cobre as seguintes funcionalidades:
 - **Base URL**: A URL base da API está configurada na classe `ApiService` e pode ser alterada conforme necessário.
 - **Esquemas JSON**: Os esquemas para validação de contrato estão localizados em `src/test/resources/schemas`.
 
-## Links da API
+### Link da API
 
 [Github - Traffic Incident Management API](https://github.com/viniciusleonel/traffic-incident-management-api)
 
+<!--
 [Microsoft Azure Swagger- Traffic Incident Management API ](https://traffic-incident-api-dev-dtbtfvg2e7e7a8eq.eastus2-01.azurewebsites.net/swagger-ui/index.html)
 
-[Microsoft Azure Base URL - Traffic Incident Management API ](https://traffic-incident-api-dev-dtbtfvg2e7e7a8eq.eastus2-01.azurewebsites.net)
+[Microsoft Azure Base URL - Traffic Incident Management API ](https://traffic-incident-api-dev-dtbtfvg2e7e7a8eq.eastus2-01.azurewebsites.net)-->
 
 ## Tecnologias Utilizadas
 

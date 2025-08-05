@@ -6,11 +6,9 @@ services:
       context: .
       dockerfile: Dockerfile
     image: testes-bdd-ger_de_traf:latest
-    ports:
-      - "8080:8080"
     networks:
-      - testes-bdd-ger_de_traf-net
+      - gerenciamento-trafego-net
 
 networks:
-  testes-bdd-ger_de_traf-net:
+  gerenciamento-trafego-net:
     driver: bridge

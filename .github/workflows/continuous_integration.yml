@@ -30,9 +30,9 @@ jobs:
       - name: Subir container API principal
         run: |
           docker run -d -p 8080:8080 \
-            -e PROFILE=${{ PROFILE }} \
-            -e MONGODB=${{ MONGODB }} \
-            -e JWT_SECRET=${{ JWT_SECRET }} \
+            -e PROFILE=${{ secrets.PROFILE }} \
+            -e MONGODB=${{ secrets.MONGODB }} \
+            -e JWT_SECRET=${{ secrets.JWT_SECRET }} \
             --name traffic-incident-management-api \
             ${{ secrets.DOCKERHUB_USERNAME }}/traffic-incident-management-api:latest
 

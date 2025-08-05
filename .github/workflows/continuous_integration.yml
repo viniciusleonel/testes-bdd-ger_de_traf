@@ -4,9 +4,7 @@ on:
   pull_request:
   push:
     branches:
-      - '*'
-  repository_dispatch:
-    types: [run-tests-api]
+      - main
 
 jobs:
   test:

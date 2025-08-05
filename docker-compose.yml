@@ -6,9 +6,12 @@ services:
       context: .
       dockerfile: Dockerfile
     image: testes-bdd-ger_de_traf:latest
+    entrypoint: ["mvn", "clean", "test"]
+    environment:
+      - API_HOST=http://traffic-incident-management-api:8080
     networks:
-      - gerenciamento-trafego-net
+      - trafego-net
 
 networks:
-  gerenciamento-trafego-net:
-    driver: bridge
+  trafego-net:
+    external: true

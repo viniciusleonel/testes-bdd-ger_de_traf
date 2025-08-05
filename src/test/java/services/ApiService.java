@@ -33,7 +33,16 @@ public class ApiService {
     static final UsuarioModel usuarioModel = new UsuarioModel();
     static final LoginModel loginModel = new LoginModel();
 
-    static String baseUrl = "http://localhost:8080";
+    static String baseUrl;
+
+    static {
+        String apiHost = System.getenv("API_HOST");
+        if (apiHost != null && !apiHost.isEmpty()) {
+            baseUrl = apiHost;
+        } else {
+            baseUrl = "http://localhost:8080";
+        }
+    }
 
     static String token;
     public static Response response;

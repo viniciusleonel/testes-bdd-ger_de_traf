@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  testes-bdd-ger_de_traf:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: testes-bdd-ger_de_traf:latest
+    ports:
+      - "8080:8080"
+    networks:
+      - testes-bdd-ger_de_traf-net
+
+networks:
+  testes-bdd-ger_de_traf-net:
+    driver: bridge

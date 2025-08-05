@@ -1,0 +1,46 @@
+name: Testes API Remota (CI)
+
+on:
+  pull_request:
+  push:
+    branches:
+      - '*'
+  repository_dispatch:
+    types: [run-tests-api]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v3
+
+      - name: Configurar JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      - name: Baixar imagem da API principal
+        run: docker pull ${{ secrets.DOCKERHUB_USERNAME }}/traffic-incident-management-api:latest
+
+      - name: Remove container antigo
+        run: docker rm -f traffic-incident-management-api || true
+
+      - name: Subir container API principal
+        run: docker run -d -p 8080:8080 --name traffic-incident-management-api ${{ secrets.DOCKERHUB_USERNAME }}/traffic-incident-management-api:latest
+
+      - name: Aguardar API iniciar
+        run: |
+          for i in {1..20}; do
+            if curl -s http://localhost:8080/actuator/health | grep '"status":"UP"' > /dev/null; then
+              echo "API pronta!"
+              exit 0
+            fi
+            sleep 3
+          done
+          echo "API não respondeu a tempo"
+          exit 1
+
+      - name: Executar testes
+        run: mvn clean test

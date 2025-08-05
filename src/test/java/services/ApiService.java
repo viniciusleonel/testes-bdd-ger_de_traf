@@ -33,7 +33,7 @@ public class ApiService {
     static final UsuarioModel usuarioModel = new UsuarioModel();
     static final LoginModel loginModel = new LoginModel();
 
-    static String baseUrl = "https://traffic-incident-api-dev-dtbtfvg2e7e7a8eq.eastus2-01.azurewebsites.net";
+    static String baseUrl = "http://localhost:8080";
 
     static String token;
     public static Response response;

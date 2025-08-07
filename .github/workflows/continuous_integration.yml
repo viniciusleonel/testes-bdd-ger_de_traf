@@ -1,4 +1,4 @@
-name: Testes API Remota (CI)
+name: CI - Testes de Integração da API traffic-incident-management-api
 
 on:
   pull_request:
@@ -7,7 +7,7 @@ on:
       - main
 
 jobs:
-  test:
+  test-and-build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout código
@@ -25,12 +25,9 @@ jobs:
       - name: Remove container antigo
         run: docker rm -f traffic-incident-management-api || true
 
-      - name: Subir container API principal
+      - name: Subir container API principal ( traffic-incident-management-api )
         run: >
           docker run -d -p 8080:8080 -e PROFILE="${{ secrets.PROFILE }}" -e MONGODB="${{ secrets.MONGODB }}" -e JWT_SECRET="${{ secrets.JWT_SECRET }}" --name traffic-incident-management-api ${{ secrets.DOCKERHUB_USERNAME }}/traffic-incident-management-api:latest
-
-      - name: Ver logs da API
-        run: docker logs traffic-incident-management-api
 
       - name: Aguardar API iniciar
         run: |

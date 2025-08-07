@@ -1,10 +1,29 @@
-# Traffic Incident Management API
-
-## Visão Geral
+# Testes Automatizados para *Traffic Incident Management API*
 
 Esta aplicação é um conjunto de testes automatizados para a Traffic Incident Management API. 
 Ela utiliza o framework Cucumber para definir cenários de teste em linguagem
 natural e o Rest Assured para realizar requisições HTTP e validar respostas.
+
+Foi implementado um workflow de Integração Contínua (`CI`) utilizando 
+GitHub Actions para testes em `pull` ou 'push requests', e um processo de 
+Entrega Contínua (`CD`) que realiza o `deploy` automático da imagem da aplicação
+no **Docker Hub**. Isso garante que apenas versões testadas da aplicação sejam
+publicadas no repositório, automatizando e confiabilizando o processo de
+entrega contínua.
+
+`CI` - Este workflow é acionado a cada `push` ou `pull request` na `branch main`. Ele 
+realiza o `pull` da imagem da API principal a partir do **Docker Hub**, remove 
+containers antigos e sobe um novo container com as variáveis de ambiente 
+necessárias. Após garantir que a API está no ar utilizando um `endpoint` de health check (`/actuator/health`), 
+executa os testes com **Maven** (`mvn clean test`). Esse processo garante que a 
+imagem publicada anteriormente continua funcional ao ser reiniciada em um 
+novo ambiente, validando sua integridade e comportamento esperado.
+
+`CD` - Este workflow é executado automaticamente após a conclusão bem-sucedida do 
+workflow de `CI` anterior. Ele realiza o checkout do código, configura o
+**Docker Buildx**, faz login no **Docker Hub** e executa o `build` e `push` da nova imagem. Isso garante que a versão mais recente 
+dos testes de integração também esteja atualizada e disponível no repositório 
+**Docker Hub**, mantendo a consistência e a automação do pipeline de entrega contínua.
 
 ## Estrutura do Projeto
 
@@ -30,19 +49,27 @@ A aplicação cobre as seguintes funcionalidades:
 
 1. **Pré-requisitos**: Certifique-se de ter o Java e o Maven instalados em sua máquina.
 
-2. **Clonar o Repositório**:
+2. **Clonar o Repositório da API Principal**:
+   ```bash
+   git clone https://github.com/viniciusleonel/traffic-incident-management-api
+   cd traffic-incident-management-api
+   ```
+   
+3. **Siga o passo a passo descrito no `README` para rodar a API em `http://localhost:8080`**
+
+4. **Clonar o Repositório dos testes**:
    ```bash
    git clone https://github.com/viniciusleonel/testes-bdd-ger_de_traf
    cd testes-bdd-ger_de_traf
    ```
 
-3. **Executar os Testes**:
+5. **Executar os Testes**:
    Utilize o Maven para executar os testes:
    ```bash
    mvn clean test
    ```
 
-4. **Relatórios**:
+6. **Relatórios**:
    Após a execução dos testes, um relatório em HTML será gerado na pasta `target/cucumber-reports.html`.
 
 ## Configuração

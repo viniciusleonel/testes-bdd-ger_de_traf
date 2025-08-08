@@ -25,36 +25,20 @@ workflow de `CI` anterior. Ele realiza o checkout do código, configura o
 dos testes de integração também esteja atualizada e disponível no repositório 
 **Docker Hub**, mantendo a consistência e a automação do pipeline de entrega contínua.
 
-## Estrutura do Projeto
+### Link da API Principal
 
-- **src/test/java/services**: Contém as classes de serviço que encapsulam a lógica de interação com a API.
-- **src/test/resources/features**: Contém os arquivos de feature do Cucumber, que descrevem os cenários de teste.
-- **src/test/java/steps**: Contém as definições dos passos do Cucumber, que ligam os cenários de teste à lógica de teste.
-- **src/test/java/model**: Contém os modelos de dados utilizados para mapear as respostas da API.
-- **src/test/resources/schemas**: Contém os esquemas JSON utilizados para validação de contrato das respostas da API.
-
-## Funcionalidades
-
-A aplicação cobre as seguintes funcionalidades:
-
-1. **Cadastro de Usuário**: Criação de um novo usuário na API.
-2. **Login de Usuário**: Autenticação de um usuário existente.
-3. **Listagem de Usuários**: Listagem de todos os usuários.
-4. **Cadastro de Acidente**: Registro de um acidente com detalhes como data, gravidade, endereço, veículos envolvidos e feridos.
-5. **Listagem de Acidentes**: Listagem de todos os acidentes.
-6. **Deleção de Acidente**: Remoção de um acidente existente da API.
-7. **Deleção de Usuário**: Remoção de um usuário existente da API.
+[Github - Traffic Incident Management API](https://github.com/viniciusleonel/traffic-incident-management-api)
 
 ## Como Executar
 
-1. **Pré-requisitos**: Certifique-se de ter o Java e o Maven instalados em sua máquina.
+1. **Pré-requisitos**: Certifique-se de ter o **Java(21)** e o **Maven** instalados em sua máquina.
 
 2. **Clonar o Repositório da API Principal**:
    ```bash
    git clone https://github.com/viniciusleonel/traffic-incident-management-api
    cd traffic-incident-management-api
    ```
-   
+
 3. **Siga o passo a passo descrito no `README` para rodar a API em `http://localhost:8080`**
 
 4. **Clonar o Repositório dos testes**:
@@ -77,9 +61,25 @@ A aplicação cobre as seguintes funcionalidades:
 - **Base URL**: A URL base da API está configurada na classe `ApiService` e pode ser alterada conforme necessário.
 - **Esquemas JSON**: Os esquemas para validação de contrato estão localizados em `src/test/resources/schemas`.
 
-### Link da API
+## Estrutura do Projeto
 
-[Github - Traffic Incident Management API](https://github.com/viniciusleonel/traffic-incident-management-api)
+- **src/test/java/services**: Contém as classes de serviço que encapsulam a lógica de interação com a API.
+- **src/test/resources/features**: Contém os arquivos de feature do Cucumber, que descrevem os cenários de teste.
+- **src/test/java/steps**: Contém as definições dos passos do Cucumber, que ligam os cenários de teste à lógica de teste.
+- **src/test/java/model**: Contém os modelos de dados utilizados para mapear as respostas da API.
+- **src/test/resources/schemas**: Contém os esquemas JSON utilizados para validação de contrato das respostas da API.
+
+## Funcionalidades
+
+A aplicação cobre as seguintes funcionalidades:
+
+1. **Cadastro de Usuário**: Criação de um novo usuário na API.
+2. **Login de Usuário**: Autenticação de um usuário existente.
+3. **Listagem de Usuários**: Listagem de todos os usuários.
+4. **Cadastro de Acidente**: Registro de um acidente com detalhes como data, gravidade, endereço, veículos envolvidos e feridos.
+5. **Listagem de Acidentes**: Listagem de todos os acidentes.
+6. **Deleção de Acidente**: Remoção de um acidente existente da API.
+7. **Deleção de Usuário**: Remoção de um usuário existente da API.
 
 <!--
 [Microsoft Azure Swagger- Traffic Incident Management API ](https://traffic-incident-api-dev-dtbtfvg2e7e7a8eq.eastus2-01.azurewebsites.net/swagger-ui/index.html)
